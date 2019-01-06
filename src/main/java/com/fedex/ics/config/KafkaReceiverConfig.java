@@ -73,10 +73,10 @@ public class KafkaReceiverConfig {
                      // @Header(KafkaHeaders.RECEIVED_TIMESTAMP) Long timestamp,
                       ) {
     String[] values = payload.split(":");
-    logger.info("CalculateTimeOfArrival Recieved: " + values[0] + " appID: " + appID + " Shipment: " + values[1]);
+    logger.info("Calculate Time Of Arrival Recieved: " + values[0] + " appID: " + appID + " Shipment: " + values[1]);
     if(appID.contains("1002"))
     {
-      logger.info("CalculateTimeOfArrival Processing... " + values[1]);
+      logger.info("Calculate Time Of Arrival Processing... " + values[1]);
       worker.doWork(values[0], appID, values[1]);
     }
   }
