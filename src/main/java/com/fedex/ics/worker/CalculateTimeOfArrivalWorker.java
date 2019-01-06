@@ -46,7 +46,7 @@ public class CalculateTimeOfArrivalWorker {
     for (int i = 0; i < importantInfo.length; i++) {
       // Pause for 4 seconds
       try {
-        Thread.sleep(10000);
+        Thread.sleep(1000);
       } catch (InterruptedException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

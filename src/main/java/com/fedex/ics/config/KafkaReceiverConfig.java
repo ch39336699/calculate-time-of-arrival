@@ -30,7 +30,7 @@ import com.fedex.ics.worker.CalculateTimeOfArrivalWorker;
 public class KafkaReceiverConfig {
   private static final Log logger = LogFactory.getLog(KafkaReceiverConfig.class);
     
-  @Value("localhost:9092")
+  @Value("c0002666.test.cloud.fedex.com:9092")
   private String bootstrapServers;
   
   @Autowired
@@ -73,10 +73,9 @@ public class KafkaReceiverConfig {
                      // @Header(KafkaHeaders.RECEIVED_TIMESTAMP) Long timestamp,
                       ) {
     String[] values = payload.split(":");
-    logger.info("Calculate Time Of Arrival Recieved: " + values[0] + " appID: " + appID + " Shipment: " + values[1]);
-    if(appID.contains("1002"))
+    if(appID.contains("1001"))
     {
-      logger.info("Calculate Time Of Arrival Processing... " + values[1]);
+      logger.info("Calculate Time Of Arrival Processing... TaskID:" + values[0]  + " OID:" + values[1]);
       worker.doWork(values[0], appID, values[1]);
     }
   }

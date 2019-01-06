@@ -15,7 +15,7 @@ import java.util.Map;
 @Configuration
 public class KafkaSenderConfig {
 
-    @Value("localhost:9092")
+    @Value("c0002666.test.cloud.fedex.com:9092")
     private String bootstrapServers;
 
     @Bean
