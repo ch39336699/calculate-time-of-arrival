@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fedex</groupId>
-	<artifactId>shipmentProcessor</artifactId>
+	<artifactId>calculate-time-of-arrival</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>calculate-time-of-arrival</name>
 	<description>Calculate Time Of Arrival</description>
