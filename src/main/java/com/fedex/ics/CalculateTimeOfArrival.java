@@ -1,13 +1,13 @@
-package com.fedex.shipment;
+package com.fedex.ics;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShipmentProcessorApplication {
+public class CalculateTimeOfArrival {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShipmentProcessorApplication.class, args);
+		SpringApplication.run(CalculateTimeOfArrival.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.fedex.shipment.entity;
+package com.fedex.ics.entity;
 
 public class ErrReprocess {
 

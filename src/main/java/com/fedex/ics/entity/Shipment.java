@@ -1,4 +1,4 @@
-package com.fedex.shipment.entity;
+package com.fedex.ics.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.fedex.shipment.config;
+package com.fedex.ics.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,7 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fedex.shipment.worker.ShipmentWorker;
+import com.fedex.ics.worker.CalculateTimeOfArrivalWorker;
 
 @Configuration
 @EnableKafka
@@ -34,7 +34,7 @@ public class KafkaReceiverConfig {
   private String bootstrapServers;
   
   @Autowired
-  private ShipmentWorker worker;
+  private CalculateTimeOfArrivalWorker worker;
   
 
   @Bean
@@ -43,7 +43,7 @@ public class KafkaReceiverConfig {
       props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
       props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
       props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-      props.put(ConsumerConfig.GROUP_ID_CONFIG, "Chris");
+      props.put(ConsumerConfig.GROUP_ID_CONFIG, "timeOfArrival");
       props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
       return props;
   }
@@ -58,7 +58,6 @@ public class KafkaReceiverConfig {
     ConcurrentKafkaListenerContainerFactory<String, String> factory =
         new ConcurrentKafkaListenerContainerFactory<>();
     factory.setConsumerFactory(consumerFactory());
-
     return factory;
   }
   
@@ -74,16 +73,11 @@ public class KafkaReceiverConfig {
                      // @Header(KafkaHeaders.RECEIVED_TIMESTAMP) Long timestamp,
                       ) {
     String[] values = payload.split(":");
-    logger.info("[1002] Recieved StreamID: " + values[0] + " appID: " + appID + " Shipment: " + values[1]);
+    logger.info("CalculateTimeOfArrival Recieved: " + values[0] + " appID: " + appID + " Shipment: " + values[1]);
     if(appID.contains("1002"))
     {
-      logger.info("[1002] Processing Shipment... " + values[1]);
+      logger.info("CalculateTimeOfArrival Processing... " + values[1]);
       worker.doWork(values[0], appID, values[1]);
     }
   }
-
-  /*@Bean
-  public Receiver receiver() {
-    return new Receiver();
-  }*/
 }
